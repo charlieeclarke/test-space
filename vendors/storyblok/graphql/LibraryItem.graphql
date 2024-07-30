@@ -1,0 +1,13 @@
+query LibraryItem($slug: ID!) {
+  LibraryItem(id: $slug) {
+    content {
+      component
+      body
+    }
+    slug
+    name
+    first_published_at
+    full_slug
+    uuid
+  }
+}

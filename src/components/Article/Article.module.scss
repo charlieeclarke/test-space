@@ -1,0 +1,12 @@
+.article {
+  background: var(--article-background, transparent);
+  display: grid;
+  place-content: var(--article-alignment, center);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--article-content-spacing, 20px);
+    max-width: var(--article-content-max-width, 400px);
+  }
+}

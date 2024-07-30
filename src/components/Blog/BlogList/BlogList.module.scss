@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xl) var(--spacing-m) var(--spacing-m) 0px;
+  li {
+    list-style: none;
+  }
+}
+
+.pageLink {
+  text-decoration: none;
+  color: var(--color-text);
+  font-size: rem-calc(16);
+  font-weight: 600;
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    color: var(--color-white);
+    text-decoration: none;
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.previous,
+.next {
+  cursor: pointer;
+}
+
+.active {
+  a {
+    background-color: var(--light-grey);
+  }
+}

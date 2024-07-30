@@ -1,0 +1,43 @@
+/*
+  USAGE
+
+    .example-element {
+      font-size: 1rem;
+
+      @mixin for-tablet-up {
+        font-size: 2rem;
+      }
+    }
+
+    These are usually best added inline, for readability
+*/
+
+@mixin for-mobile-only {
+  @media (max-width: $mobile-max-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-tablet-up {
+  @media (min-width: $tablet-min-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (min-width: $desktop-min-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-desktop-lg-up {
+  @media (min-width: $desktop-lg-min-breakpoint) {
+    @content;
+  }
+}
+
+@mixin for-desktop-xl-up {
+  @media (min-width: $desktop-xl-min-breakpoint) {
+    @content;
+  }
+}

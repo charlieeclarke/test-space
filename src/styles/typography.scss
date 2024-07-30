@@ -1,0 +1,106 @@
+// font-face declarations. Only woff and woff2 formats are needed by default
+// @include font-face("Custom font", "/fonts/font-regular");
+// @include font-face("Custom font", "/fonts/font-bold", 600);
+
+$font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+$font-family-secondary: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family;
+  color: var(--heading-color);
+  margin: 0;
+  padding: 0;
+}
+
+/*
+  Notes:
+  - Maps passed to `fluid-clamp` should only use pixel values
+  - Line height should always be expressed as a multipler. Pixel values are dangerous!
+*/
+h1,
+.u-h1 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 48px,
+      lg: 72px,
+      xl: 88px,
+    )
+  );
+  line-height: 1.25;
+  font-weight: 400;
+}
+
+h2,
+.u-h2 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 36px,
+      lg: 48px,
+    )
+  );
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+h3,
+.u-h3 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 28px,
+      lg: 40px,
+    )
+  );
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+h4,
+.u-h4 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 24px,
+      lg: 32px,
+    )
+  );
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+h5,
+.u-h5 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 16px,
+      lg: 20px,
+    )
+  );
+  line-height: 1.15;
+  font-weight: 400;
+}
+
+h6,
+.u-h6 {
+  @include fluid-clamp(
+    'font-size',
+    (
+      xs: 16px,
+      lg: 18px,
+    )
+  );
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.u-font-secondary {
+  font-family: $font-family-secondary;
+}

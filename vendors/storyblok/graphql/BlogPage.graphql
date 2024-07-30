@@ -1,0 +1,63 @@
+query BlogPage(
+  $slug: ID!
+  $per_page: Int
+  $page: Int
+  $sort_by: String
+  $starts_with: String
+  $search_term: String
+  $with_tag: String
+) {
+  PageItem(id: $slug) {
+    content {
+      component
+      body
+      schemaPageType
+      SEO
+      globalFooter {
+        content
+      }
+      globalHeader {
+        content
+      }
+    }
+    slug
+    name
+    first_published_at
+    full_slug
+    uuid
+    alternates {
+      fullSlug
+      id
+      name
+      published
+      slug
+    }
+  }
+  Tags {
+    items {
+      name
+    }
+  }
+  PostItems(
+    per_page: $per_page
+    page: $page
+    sort_by: $sort_by
+    excluding_slugs: "index/"
+    starts_with: $starts_with
+    search_term: $search_term
+    with_tag: $with_tag
+  ) {
+    total
+    items {
+      content {
+        _uid
+        description
+      }
+      first_published_at
+      full_slug
+      slug
+      tag_list
+      name
+    }
+  }
+}

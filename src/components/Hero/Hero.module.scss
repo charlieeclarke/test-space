@@ -1,0 +1,43 @@
+.hero {
+  --hero-height: 500px;
+  min-height: var(--hero-height);
+
+  display: flex;
+  align-items: center;
+
+  background-size: cover;
+  background-position: bottom center;
+
+  position: relative;
+
+  & > div {
+    width: 100%;
+  }
+}
+
+.heroContent {
+  margin: 10px 0;
+}
+
+.heroImage {
+  position: absolute;
+
+  inset: 0;
+  width: 100%;
+  height: 100%;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Add additional hero themes if you need
+.u-hero-dark {
+  h1,
+  h2,
+  h3 {
+    color: var(--white);
+  }
+}

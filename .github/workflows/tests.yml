@@ -1,0 +1,122 @@
+name: 'Tests'
+on:
+  pull_request:
+
+permissions:
+  checks: write
+  pull-requests: write
+  contents: write
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout the repo
+        uses: actions/checkout@v3
+
+      - name: 🔧 Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: ✨ Setup app dependencies and caching config
+        uses: ./.github/actions/setup
+        id: setup-env
+        with:
+          node-env: test # build for production to test deployed app
+          storyblok-preview-token: ${{ secrets.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN }}
+          storyblok-space-id: ${{ secrets.STORYBLOK_SPACE_ID }}
+
+      - name: 🧪 Run all unit tests
+        run: yarn ci:test:unit
+
+      # - name: 📊 Upload test coverage report as an artifact
+      #   uses: ./.github/actions/test-coverage
+      #   if: ${{ success() }}
+
+      # - uses: dorny/test-reporter@v1
+      #   if: ${{ success() }}
+      #   with:
+      #     artifact: test-results # artifact name
+      #     name: JEST Tests # Name of the check run which will be created
+      #     path: 'tests/reports/*.xml' # Path to test results (inside artifact .zip)
+      #     reporter: jest-junit # Format of test results
+      #     fail-on-error: false
+      #     list-suites: true # List all suites in the report
+      #     list-tests: true # List all tests in the report
+      #     max-annotations: 10 # Maximum number of annotations to show in the report
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout the repo
+        uses: actions/checkout@v3
+
+      - name: 🔧 Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      # - name: ✨ Setup app dependencies and caching config
+      #   id: deps-cache
+      #   uses: ./.github/actions/setup
+
+      # - name: 📦 Install Dependencies
+      #   if: ${{ success() || steps.deps-cache.outputs.cache-hit != 'true'  }}
+      #   env:
+      #     NODE_ENV: test # build for test to test deployed app
+      #   run: yarn install --frozen-lockfile
+
+      # - name: 🏗️ Build app
+      #   if: ${{ success() }}
+      #   env:
+      #     NODE_ENV: test # build for production to test deployed app
+      #     NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: ${{ secrets.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN }}
+      #   run: yarn build
+
+      - name: ✨ Setup app dependencies, caching config, and build the application
+        uses: ./.github/actions/setup
+        id: setup-env
+        with:
+          node-env: test # build to test built app
+          build-command: NODE_ENV=test yarn build
+          storyblok-preview-token: ${{ secrets.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN }}
+          storyblok-space-id: ${{ secrets.STORYBLOK_SPACE_ID }}
+
+      - name: 🧪 Run all e2e tests
+        if: ${{ success() }}
+        uses: cypress-io/github-action@v4
+        env:
+          CYPRESS_RECORD_KEY: on-tmpl-nextjs-starter
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: ${{ secrets.STORYBLOK_PREVIEW_TOKEN }}
+          STORYBLOK_SPACE_ID: ${{ secrets.STORYBLOK_SPACE_ID }}
+        with:
+          ci-build-id: build-${{ github.run_id }}
+          install: false # we have already installed all dependencies above
+          browser: chrome # test against Chrome
+          start: yarn start # start the app before testing
+          wait-on: 'npx wait-on --timeout 5000 http://127.0.0.1:3000' # wait for the app to be ready before starting tests
+          config: 'baseUrl=http://127.0.0.1:3000' # override the baseUrl to use the built instead of the dev version.
+          spec: | # Removing lighthouse for now to avoid breaking workflow
+            cypress/e2e/sanity/**/*.cy.ts
+            cypress/e2e/pages/**/*.cy.ts
+            cypress/e2e/flow/**/*.cy.ts
+
+      - name: 📸 Upload screenshots
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          retention-days: 3
+          name: cypress-screenshots-${{ github.run_id }}
+          path: cypress/screenshots
+
+      - name: 🎥 Upload recordings
+        uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          retention-days: 3
+          name: cypress-recordings-${{ github.run_id }}
+          path: cypress/videos

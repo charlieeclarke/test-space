@@ -1,0 +1,8 @@
+query ContentNode($slug: ID!) {
+  ContentNode(id: $slug) {
+    alternates {
+      slug
+      fullSlug
+    }
+  }
+}

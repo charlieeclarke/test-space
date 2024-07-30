@@ -1,0 +1,52 @@
+.container {
+  background-color: var(--dark-grey);
+  --link-color: var(--white);
+  padding: 30px 0;
+
+  @media screen and (min-width: $tablet-min-breakpoint) {
+    padding: 60px 0;
+  }
+}
+
+.footerLinksContainer {
+  display: flex;
+}
+
+.copyrightRow {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.copyrightCol {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.newsletter-subscribe {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  hr {
+    padding: 0;
+    margin: 0.5rem 0;
+    border: 0;
+    height: 1px;
+    background-color: var(--white);
+  }
+
+  h3 {
+    color: var(--white);
+  }
+
+  .newsletter-subscribe__form {
+    --mailchimp-form-direction: column;
+    --mailchimp-form-spacing: 0.75rem;
+    --mailchimp-form-error-color: #ca1010;
+    --mailchimp-form-success-color: #70ca10;
+    --mailchimp-form-error-size: 0.75rem;
+    --mailchimp-form-label-color: var(--white);
+    --mailchimp-form-label-size: 0.75rem;
+  }
+}

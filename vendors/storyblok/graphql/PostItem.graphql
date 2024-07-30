@@ -1,0 +1,28 @@
+query PostItem($slug: ID!) {
+  PostItem(id: $slug) {
+    content {
+      _editable
+      component
+      content
+      SEO
+      globalFooter {
+        content
+      }
+      globalHeader {
+        content
+      }
+    }
+    slug
+    name
+    first_published_at
+    full_slug
+    uuid
+    alternates {
+      fullSlug
+      id
+      name
+      published
+      slug
+    }
+  }
+}

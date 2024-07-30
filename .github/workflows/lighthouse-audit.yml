@@ -1,0 +1,42 @@
+# Disabled temporarily until we can get the workflow to work
+name: lighthouse-audit
+on:
+  [workflow_call]
+  # pull_request:
+  #   branches: [main]
+  # workflow_dispatch:
+  # workflow_run:
+  #   workflows: [CI]
+  #   types:
+  #     - completed
+
+jobs:
+  lighthouse-check:
+    runs-on: ubuntu-latest
+    outputs:
+      lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+    steps:
+      - uses: ./.github/actions/build.yml
+      - run: mkdir ${{ github.workspace }}/tmp/artifacts
+
+      - name: Run Lighthouse
+        uses: foo-software/lighthouse-check-action@master
+        id: lighthouseCheck
+        with:
+          gitAuthor: ${{ github.actor }}
+          gitBranch: ${{ github.ref }}
+          gitHubAccessToken: ${{ secrets.LIGHTHOUSE_CHECK_GITHUB_ACCESS_TOKEN }}
+          outputDirectory: ${{ github.workspace }}/tmp/artifacts
+          urls: ${{ inputs.urls }}
+          sha: ${{ github.sha }}
+          slackWebhookUrl: ${{ secrets.LIGHTHOUSE_CHECK_WEBHOOK_URL }}
+
+      - name: Verify Lighthouse Check results
+        uses: foo-software/lighthouse-check-status-action@master
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouseCheck.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: '90'
+          minBestPracticesScore: '90'
+          minPerformanceScore: '80'
+          minProgressiveWebAppScore: '20'
+          minSeoScore: '90'

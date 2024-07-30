@@ -1,0 +1,29 @@
+// Breakpoints
+$design-mobile-breakpoint: 320px;
+$design-desktop-breakpoint: 1440px;
+
+$mobile-max-breakpoint: 580px;
+$tablet-min-breakpoint: 768px;
+$desktop-min-breakpoint: 1024px;
+$desktop-lg-min-breakpoint: 1280px;
+$desktop-xl-min-breakpoint: $design-desktop-breakpoint;
+
+$tablet-max-breakpoint: $desktop-min-breakpoint - 1px;
+$desktop-max-breakpoint: $desktop-lg-min-breakpoint - 1px;
+$desktop-lg-max-breakpoint: $desktop-xl-min-breakpoint - 1px;
+
+// Colours
+$primary: #2e578d;
+$secondary: #ebebeb;
+$light-bg: #f7f3ea;
+$white: #fff;
+$black: #000;
+$pastel-coral: #ffe4cc;
+$pastel-aqua: #d1f0ef;
+
+$success: #35d28b;
+$orange: #fb9528;
+$red: #e22c3e;
+$light-blue: #1391d2;
+$dark-grey: #293339;
+$light-grey: #ebebeb;

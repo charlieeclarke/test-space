@@ -1,0 +1,22 @@
+name: unit-tests
+description: 'Run unit tests'
+author: 'ON'
+
+inputs:
+  group:
+    description: 'The group of tests to run separated by commas'
+    required: false
+    default: 'all'
+
+runs:
+  using: composite
+  steps:
+    - name: Run Jest group test
+      shell: bash
+      if: ${{ inputs.group }} != 'all'
+      run: yarn ci:test:unit --group=${{ inputs.group}}
+
+    - name: Run all Jest tests
+      shell: bash
+      if: ${{ inputs.group }} == 'all'
+      run: yarn ci:test:unit

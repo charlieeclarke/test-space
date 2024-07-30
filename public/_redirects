@@ -1,0 +1,4 @@
+# Netlify redirects file
+# Syntax guide: https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+# ---
+# Note if hosting on Vercel that this won't work, and we should use vercel.json instead

@@ -1,0 +1,105 @@
+@import 'reboot';
+@import 'variables';
+@import 'typography';
+@import 'spacing';
+@import 'themes';
+@import 'forms';
+@import 'accordion';
+
+html {
+  margin: 0;
+  font-size: 16px;
+}
+
+body {
+  font-family: $font-family;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+input,
+button,
+select,
+optgroup,
+textarea {
+  font-family: $font-family;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+button {
+  margin: 0;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+*:focus,
+*:focus-visible {
+  outline: 1px dashed #000;
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+input:focus,
+input:focus-visible,
+select:focus,
+select:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: 1px solid #c1b1a0;
+  outline-offset: -2px;
+}
+
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.ReactModal__Overlay {
+  @include z-index(overlay);
+  background-color: rgb(0, 0, 0, 0.15) !important;
+}
+
+@media screen and (max-width: var(--mobile-max-breakpoint)) {
+  :root {
+    --gutter: 6px;
+  }
+}
+
+.u-hidden-mobile {
+  @media screen and (max-width: var(--mobile-max-breakpoint)) {
+    display: none;
+  }
+}
+
+.u-hidden-tablet {
+  @media screen and (min-width: var(--tablet-min-breakpoint)) and (max-width: var(--tablet-max-breakpoint)) {
+    display: none;
+  }
+}
+
+.u-hidden-desktop {
+  @media screen and (min-width: var(--desktop-min-breakpoint)) {
+    display: none;
+  }
+}

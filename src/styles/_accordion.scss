@@ -1,0 +1,35 @@
+:root {
+  --accordion-container-bg: transparent;
+  --accordion-container-padding: 0;
+  --accordion-container-border: none;
+
+  --accordion-trigger-bg: transparent;
+  --accordion-trigger-color: var(--primary);
+  --accordion-trigger-padding: 0;
+
+  --accordion-trigger-font-size: 1.5rem;
+  --accordion-trigger-font-family: inherit;
+  --accordion-trigger-font-weight: inherit;
+
+  --accordion-trigger-border-bottom-color: none;
+  --accordion-trigger-border-top-color: none;
+  --accordion-trigger-border-left-color: none;
+  --accordion-trigger-border-right-color: none;
+
+  --accordion-trigger-border-bottom-style: none;
+  --accordion-trigger-border-top-style: none;
+  --accordion-trigger-border-left-style: none;
+  --accordion-trigger-border-right-style: none;
+
+  --accordion-trigger-border-bottom-width: none;
+  --accordion-trigger-border-top-width: none;
+  --accordion-trigger-border-left-width: none;
+  --accordion-trigger-border-right-width: none;
+
+  --accordion-panel-padding: 0;
+
+  --accordion-item-border-bottom-width: none;
+  --accordion-item-border-bottom-style: none;
+  --accordion-item-border-bottom-color: none;
+  --accordion-item-spacing: 1.2rem;
+}

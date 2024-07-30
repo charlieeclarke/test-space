@@ -1,0 +1,140 @@
+@use 'sass:map';
+@use 'sass:math';
+
+/*
+  USAGE NOTES
+
+  Example: @include fluid-clamp('font-size', (xs: 48px, lg: 72px, xl: 88px));
+  Example: @include fluid-clamp('font-size', (320px: 48px, 1240px: 72px, 1600px: 88px));
+
+  This will ensure that sizes match exactly at the breakpoint specified,
+  but are interpolated in-between sizes for fluid values.
+
+  Expects pixel values for size
+  Expects either pixel values for breakpoints, or:
+    xs: $design-mobile-breakpoint
+    sm: $tablet-min-breakpoint
+    md: $desktop-min-breakpoint
+    lg: $desktop-lg-min-breakpoint
+    xl: $desktop-xl-min-breakpoint
+*/
+
+@mixin fluid-clamp($property, $map, $inverted: false) {
+  $px-map: ();
+  @each $mkey, $mvalue in $map {
+    $px-map: map.set($px-map, find-key($mkey), $mvalue);
+  }
+
+  // Get the number of provided breakpoints
+  $length: length(map-keys($map));
+
+  // Error if the number of breakpoints is < 2
+  @if ($length < 2) {
+    @error "fluid-clamp() $map requires at least 2 values";
+  }
+
+  // Sort the map by viewport width (key)
+  $map: map-sort($px-map);
+  $keys: map-keys($map);
+
+  $adjustmentFactor: if($inverted, -1, 1);
+
+  // Minimum size
+  #{$property}: map-get($map, nth($keys, 1));
+
+  // Interpolated size through breakpoints
+  @for $i from 1 through ($length - 1) {
+    @media (min-width: nth($keys,$i)) {
+      $value1: map-get($map, nth($keys, $i)) * $adjustmentFactor;
+      $value2: map-get($map, nth($keys, ($i + 1))) * $adjustmentFactor;
+      // If values are not equal, apply clamp
+      @if ($value1 != $value2) {
+        @if ($inverted) {
+          #{$property}: clamp-size($value2, $value1, nth($keys, $i), nth($keys, ($i + 1)));
+        } @else {
+          #{$property}: clamp-size($value1, $value2, nth($keys, $i), nth($keys, ($i + 1)));
+        }
+      } @else {
+        #{$property}: $value1;
+      }
+    }
+  }
+
+  // Maxmimum size
+  @media (min-width: nth($keys, $length)) {
+    #{$property}: rem-calc(map-get($map, nth($keys, $length)));
+  }
+}
+
+// =========================
+// Required helper functions
+
+@function find-key($key) {
+  $key-map: (
+    xs: $design-mobile-breakpoint,
+    sm: $tablet-min-breakpoint,
+    md: $desktop-min-breakpoint,
+    lg: $desktop-lg-min-breakpoint,
+    xl: $desktop-xl-min-breakpoint,
+  );
+  $key-exists: map-has-key($key-map, $key);
+  @return map-get(if($key-exists, $key-map, $key), $key);
+}
+
+@function map-sort($map) {
+  $keys: list-sort(map-keys($map));
+  $sortedMap: ();
+  @each $key in $keys {
+    $sortedMap: map-merge(
+      $sortedMap,
+      (
+        $key: map-get($map, $key),
+      )
+    );
+  }
+  @return $sortedMap;
+}
+
+@function list-sort($list) {
+  $sortedlist: ();
+  @while length($list) > 0 {
+    $value: nth($list, 1);
+    @each $item in $list {
+      @if $item < $value {
+        $value: $item;
+      }
+    }
+    $sortedlist: append($sortedlist, $value, 'space');
+    $list: list-remove($list, index($list, $value));
+  }
+  @return $sortedlist;
+}
+
+@function list-remove($list, $index) {
+  $newList: ();
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $newList: append($newList, nth($list, $i), 'space');
+    }
+  }
+  @return $newList;
+}
+
+@function round($number, $decimals: 0) {
+  $n: 1;
+  @if $decimals > 0 {
+    @for $i from 1 through $decimals {
+      $n: $n * 10;
+    }
+  }
+  @return math.div(math.round($number * $n), $n);
+}
+
+@function clamp-size($min-size, $max-size, $min-breakpoint, $max-breakpoint) {
+  $slope: math.div($max-size - $min-size, $max-breakpoint - $min-breakpoint);
+  $slope-to-unit: round($slope * 100, 2);
+  $min-size-rem: round(rem-calc($min-size), 2);
+  $max-size-rem: round(rem-calc($max-size), 2);
+  $intercept-rem: round(rem-calc($min-size - $slope * $min-breakpoint), 2);
+  @return clamp(#{$min-size-rem}, #{$slope-to-unit}vw + #{$intercept-rem}, #{$max-size-rem});
+}

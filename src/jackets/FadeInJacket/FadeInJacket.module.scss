@@ -1,0 +1,37 @@
+.fadeIn {
+  // Animation defaults. Can be customised globally here
+  --_fade-in-speed: 500ms;
+  --_fade-in-distance-y: 12px;
+  --_fade-in-easing: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --_fade-in-stagger-delay: 200ms;
+
+  animation-name: _animate-fade-in;
+  animation-duration: var(--_fade-in-speed);
+  animation-timing-function: var(--_fade-in-easing);
+  animation-fill-mode: both;
+  animation-play-state: paused;
+
+  @keyframes _animate-fade-in {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, var(--_fade-in-distance-y), 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
+.active {
+  animation-play-state: running;
+}
+
+.staggered {
+  animation-delay: calc(var(--_fade-in-stagger-delay) * var(--_stagger-index));
+}
+
+// If the animation is optional, respect Reduce Motion setting
+@media screen and (prefers-reduced-motion: reduce) {
+  .optional { animation: none !important; }
+}

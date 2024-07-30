@@ -1,0 +1,10 @@
+.next/
+coverage/
+__snapshots__/
+package-lock.json
+node_modules
+**/.next/**
+**/dist/**
+_generated
+plop/templates/
+lib

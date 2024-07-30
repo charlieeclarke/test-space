@@ -1,0 +1,45 @@
+name: e2e-tests
+description: 'Run unit tests'
+author: 'ON'
+
+inputs:
+  group:
+    description: 'The group of tests to run separated by commas'
+    required: false
+    default: 'all'
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/setup
+
+    - name: 🏗️ Build app
+      shell: bash
+      env:
+        NODE_ENV: production # build for production to test deployed app
+      run: yarn build
+
+    - name: 🧪 Run e2e tests
+      uses: cypress-io/github-action@v4
+      env:
+        CYPRESS_RECORD_KEY: on-nextjs-template
+        CYPRESS_WEBSITE_URL: https://examplesite.com
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        install: false # we have already installed all dependencies above
+        browser: chrome # test against Chrome
+        start: yarn start # start the app before testing
+        wait-on: 'npx wait-on --timeout 5000 http://localhost:3000' # wait for the app to be ready before starting tests
+        config: 'baseUrl=http://localhost:3000' # override the baseUrl to use the built instead of the dev version.
+        spec: | # test only a few specific groups
+          cypress/e2e/sanity/**/*.cy.ts
+          cypress/e2e/pages/**/*.cy.ts
+          cypress/e2e/flow/**/*.cy.ts
+
+    - name: 🆙 Upload artifacts
+      uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        retention-days: 3
+        name: cypress-screenshots
+        path: cypress/screenshots

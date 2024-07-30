@@ -1,0 +1,17 @@
+.footerMenu {
+  list-style: none;
+  padding: 0;
+  margin-right: 10px;
+
+  li {
+    margin-bottom: 10px;
+  }
+
+  @media screen and (min-width: $tablet-min-breakpoint) {
+    margin-right: 20px;
+  }
+
+  @media screen and (min-width: $tablet-min-breakpoint) {
+    margin-right: 40px;
+  }
+}

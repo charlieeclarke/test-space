@@ -1,0 +1,220 @@
+$grid-columns: 12;
+
+:export {
+  columns: $grid-columns;
+}
+
+.grid {
+  --grid-columns: #{$grid-columns};
+  background-color: var(--grid-background);
+}
+
+.row {
+  --column: calc(var(--grid-size, 100%) / var(--grid-columns));
+
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+
+  padding: 0 var(--row-padding);
+
+  width: 100%;
+  max-width: var(--page-width);
+
+  row-gap: var(--row-gap, unset);
+  column-gap: var(--column-gap, unset);
+
+  justify-content: var(--justify, unset);
+  align-items: var(--align-items, unset);
+
+  flex-direction: var(--flex-direction, unset);
+}
+
+.row .row {
+  margin: 0 calc(var(--column-gutter) * -1);
+  padding: 0;
+  width: auto;
+}
+
+.gridFullWidth {
+  padding: 0;
+  > div {
+    max-width: 100%;
+  }
+}
+
+.gridFullHeight {
+  height: 100%;
+  .row {
+    height: 100%;
+  }
+}
+
+.gridVertical {
+  > .row {
+    height: fit-content;
+  }
+
+  > .row > .column {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.gridScrollSnap {
+  > .row {
+    flex-wrap: nowrap;
+    overflow: auto;
+    scroll-snap-type: var(--scroll-snap-type, both mandatory);
+    overscroll-behavior-x: var(--overscroll-behavior-x, container);
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > .column {
+      scroll-snap-stop: var(--scroll-snap-stop, normal);
+      scroll-snap-align: var(--scroll-snap-align, center);
+    }
+  }
+
+  &.gridVertical {
+    > .row {
+      overscroll-behavior-x: inherit;
+      overscroll-behavior-y: var(--overscroll-behavior-y, container);
+    }
+  }
+}
+
+.column {
+  padding-left: var(--column-gutter);
+  padding-right: var(--column-gutter);
+  position: relative;
+  display: block;
+}
+
+.column-0 {
+  display: none;
+}
+
+// Mobile
+@for $i from 1 through $grid-columns {
+  .column-#{$i} {
+    flex: 0 0 calc(var(--column) * #{$i});
+    max-width: calc(var(--column) * #{$i});
+  }
+
+  .offset-#{$i - 1} {
+    margin-left: calc(var(--column) * #{$i - 1});
+  }
+}
+
+// Mobile Large
+@include for-mobile-only {
+  .column-xs-0 {
+    display: none;
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-xs-#{$i} {
+      display: block;
+      flex: 0 0 calc(var(--column) * #{$i});
+      max-width: calc(var(--column) * #{$i});
+    }
+
+    .offset-xs-#{$i - 1} {
+      margin-left: calc(var(--column) * #{$i - 1});
+    }
+  }
+}
+
+// Tablet
+@include for-tablet-up {
+  .column-sm-0 {
+    display: none;
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-sm-#{$i} {
+      display: block;
+      flex: 0 0 calc(var(--column) * #{$i});
+      max-width: calc(var(--column) * #{$i});
+    }
+
+    .offset-sm-#{$i - 1} {
+      margin-left: calc(var(--column) * #{$i - 1});
+    }
+  }
+}
+
+// Desktop
+@include for-desktop-up {
+  .column-md-0 {
+    display: none;
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-md-#{$i} {
+      display: block;
+      flex: 0 0 calc(var(--column) * #{$i});
+      max-width: calc(var(--column) * #{$i});
+    }
+
+    .offset-md-#{$i - 1} {
+      margin-left: calc(var(--column) * #{$i - 1});
+    }
+
+    .column-order-md-#{$i} {
+      order: $i;
+    }
+  }
+}
+
+// Desktop Large
+@include for-desktop-lg-up {
+  .column-lg-0 {
+    display: none;
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-lg-#{$i} {
+      display: block;
+      flex: 0 0 calc(var(--column) * #{$i});
+      max-width: calc(var(--column) * #{$i});
+    }
+
+    .offset-lg-#{$i - 1} {
+      margin-left: calc(var(--column) * #{$i - 1});
+    }
+
+    .column-order-lg-#{$i} {
+      order: $i;
+    }
+  }
+}
+
+// Desktop Extra Large
+@include for-desktop-xl-up {
+  .column-xl-0 {
+    display: none;
+  }
+
+  @for $i from 1 through $grid-columns {
+    .column-xl-#{$i} {
+      display: block;
+      flex: 0 0 calc(var(--column) * #{$i});
+      max-width: calc(var(--column) * #{$i});
+    }
+
+    .offset-xl-#{$i - 1} {
+      margin-left: calc(var(--column) * #{$i - 1});
+    }
+
+    .column-order-xl-#{$i} {
+      order: $i;
+    }
+  }
+}

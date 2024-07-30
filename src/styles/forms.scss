@@ -1,0 +1,65 @@
+:root {
+  --form-input-color: var(--black);
+  --form-input-border-top: 1px solid var(--dark-grey);
+  --form-input-border-bottom: 1px solid var(--dark-grey);
+  --form-input-border-right: 1px solid var(--dark-grey);
+  --form-input-border-left: 1px solid var(--dark-grey);
+
+  --form-input-border-radius: 4px;
+  --form-input-padding: 12px 20px;
+
+  --form-input-color-focus: var(--black);
+  --form-input-border-top-focus: 1px solid var(--black);
+  --form-input-border-bottom-focus: 1px solid var(--black);
+  --form-input-border-right-focus: 1px solid var(--black);
+  --form-input-border-left-focus: 1px solid var(--black);
+
+  --form-input-color-active: var(--primary);
+  --form-input-border-top-active: 1px solid var(--primary);
+  --form-input-border-bottom-active: 1px solid var(--primary);
+  --form-input-border-right-active: 1px solid var(--primary);
+  --form-input-border-left-active: 1px solid var(--primary);
+}
+
+.form-input {
+  &__label {
+    display: flex;
+    flex-wrap: wrap;
+
+    font-size: rem-calc(16);
+    color: var(--form-input-color);
+
+    span {
+      width: 100%;
+    }
+  }
+
+  input,
+  textarea,
+  select {
+    color: var(--form-input-color);
+    border-top: var(--form-input-border-top);
+    border-bottom: var(--form-input-border-bottom);
+    border-right: var(--form-input-border-right);
+    border-left: var(--form-input-border-left);
+
+    padding: var(--form-input-padding);
+    border-radius: var(--form-input-border-radius);
+
+    &:focus {
+      color: var(--form-input-color-focus);
+      border-top: var(--form-input-border-top-focus);
+      border-bottom: var(--form-input-border-bottom-focus);
+      border-right: var(--form-input-border-right-focus);
+      border-left: var(--form-input-border-left-focus);
+    }
+
+    &:active {
+      color: var(--form-input-color-active);
+      border-top: var(--form-input-border-top-active);
+      border-bottom: var(--form-input-border-bottom-active);
+      border-right: var(--form-input-border-right-active);
+      border-left: var(--form-input-border-left-active);
+    }
+  }
+}

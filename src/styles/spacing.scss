@@ -1,0 +1,251 @@
+$spacings: (
+  spacing--100: (
+    xs: 12px,
+    lg: 18px,
+  ),
+  spacing--200: (
+    xs: 18px,
+    lg: 24px,
+  ),
+  spacing--300: (
+    xs: 24px,
+    lg: 30px,
+  ),
+  spacing--400: (
+    xs: 32px,
+    lg: 40px,
+  ),
+  spacing--500: (
+    xs: 40px,
+    lg: 52px,
+    xl: 60px,
+  ),
+  spacing--600: (
+    xs: 60px,
+    lg: 90px,
+    xl: 100px,
+  ),
+);
+
+/*
+  USAGE
+
+    Examples
+    .mt-1       Margin top 1px
+    .mt-100     Margin top fluidly sized small gap
+    .m-0        No margin
+
+    mt - top
+    mb - bottom
+    ml - left
+    mr - right
+    mx - left/right
+    my - top/bottom
+    m  - all sides
+
+    Values 0-6 are fixed pixel widths
+    Values 100-600 allow for fluid sizing, based on designs
+
+    Negative values are supported e.g. -mb-100
+
+    These apply to padding in the same way, but only for positive values
+    Just replace "m" for "p" e.g. pb-100
+*/
+
+.mt-0 {
+  margin-top: 0px;
+}
+.mb-0 {
+  margin-bottom: 0px;
+}
+.ml-0 {
+  margin-left: 0px;
+}
+.mr-0 {
+  margin-right: 0px;
+}
+.mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.m-0 {
+  margin: 0px;
+}
+
+.pt-0 {
+  padding-top: 0px;
+}
+.pb-0 {
+  padding-bottom: 0px;
+}
+.pl-0 {
+  padding-left: 0px;
+}
+.pr-0 {
+  padding-right: 0px;
+}
+.px-0 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.p-0 {
+  padding: 0px;
+}
+
+@for $i from 1 through 6 {
+  /* Margin */
+
+  .mt-#{$i} {
+    margin-top: #{$i}px;
+  }
+  .mb-#{$i} {
+    margin-bottom: #{$i}px;
+  }
+  .ml-#{$i} {
+    margin-left: #{$i}px;
+  }
+  .mr-#{$i} {
+    margin-right: #{$i}px;
+  }
+  .mx-#{$i} {
+    margin-left: #{$i}px;
+    margin-right: #{$i}px;
+  }
+  .my-#{$i} {
+    margin-top: #{$i}px;
+    margin-bottom: #{$i}px;
+  }
+  .m-#{$i} {
+    margin: #{$i}px;
+  }
+
+  .mt-#{$i * 100} {
+    @include fluid-clamp('margin-top', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .mb-#{$i * 100} {
+    @include fluid-clamp('margin-bottom', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .ml-#{$i * 100} {
+    @include fluid-clamp('margin-left', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .mr-#{$i * 100} {
+    @include fluid-clamp('margin-right', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .mx-#{$i * 100} {
+    @include fluid-clamp('margin-left', map-get($spacings, spacing--#{$i * 100}));
+    @include fluid-clamp('margin-right', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .my-#{$i * 100} {
+    @include fluid-clamp('margin-top', map-get($spacings, spacing--#{$i * 100}));
+    @include fluid-clamp('margin-bottom', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .m-#{$i * 100} {
+    @include fluid-clamp('margin', map-get($spacings, spacing--#{$i * 100}));
+  }
+
+  .-mt-#{$i} {
+    margin-top: #{$i * -1}px;
+  }
+  .-mb-#{$i} {
+    margin-bottom: #{$i * -1}px;
+  }
+  .-ml-#{$i} {
+    margin-left: #{$i * -1}px;
+  }
+  .-mr-#{$i} {
+    margin-right: #{$i * -1}px;
+  }
+  .-mx-#{$i} {
+    margin-left: #{$i * -1}px;
+    margin-right: #{$i * -1}px;
+  }
+  .-my-#{$i} {
+    margin-top: #{$i * -1}px;
+    margin-bottom: #{$i * -1}px;
+  }
+  .-m-#{$i} {
+    margin: #{$i * -1}px;
+  }
+
+  .-mt-#{$i * 100} {
+    @include fluid-clamp('margin-top', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-mb-#{$i * 100} {
+    @include fluid-clamp('margin-bottom', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-ml-#{$i * 100} {
+    @include fluid-clamp('margin-left', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-mr-#{$i * 100} {
+    @include fluid-clamp('margin-right', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-mx-#{$i * 100} {
+    @include fluid-clamp('margin-left', map-get($spacings, spacing--#{$i * 100}), true);
+    @include fluid-clamp('margin-right', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-my-#{$i * 100} {
+    @include fluid-clamp('margin-top', map-get($spacings, spacing--#{$i * 100}), true);
+    @include fluid-clamp('margin-bottom', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+  .-m-#{$i * 100} {
+    @include fluid-clamp('margin', map-get($spacings, spacing--#{$i * 100}), true);
+  }
+
+  /* Padding */
+
+  .pt-#{$i} {
+    padding-top: #{$i}px;
+  }
+  .pb-#{$i} {
+    padding-bottom: #{$i}px;
+  }
+  .pl-#{$i} {
+    padding-left: #{$i}px;
+  }
+  .pr-#{$i} {
+    padding-right: #{$i}px;
+  }
+  .px-#{$i} {
+    padding-left: #{$i}px;
+    padding-right: #{$i}px;
+  }
+  .py-#{$i} {
+    padding-top: #{$i}px;
+    padding-bottom: #{$i}px;
+  }
+  .p-#{$i} {
+    padding: #{$i}px;
+  }
+
+  .pt-#{$i * 100} {
+    @include fluid-clamp('padding-top', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .pb-#{$i * 100} {
+    @include fluid-clamp('padding-bottom', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .pl-#{$i * 100} {
+    @include fluid-clamp('padding-left', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .pr-#{$i * 100} {
+    @include fluid-clamp('padding-right', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .px-#{$i * 100} {
+    @include fluid-clamp('padding-left', map-get($spacings, spacing--#{$i * 100}));
+    @include fluid-clamp('padding-right', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .py-#{$i * 100} {
+    @include fluid-clamp('padding-top', map-get($spacings, spacing--#{$i * 100}));
+    @include fluid-clamp('padding-bottom', map-get($spacings, spacing--#{$i * 100}));
+  }
+  .p-#{$i * 100} {
+    @include fluid-clamp('padding', map-get($spacings, spacing--#{$i * 100}));
+  }
+}

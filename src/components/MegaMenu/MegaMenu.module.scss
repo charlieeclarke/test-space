@@ -1,0 +1,148 @@
+ul.megaMenu {
+  --megamenu-offset-top: 8px;
+
+  display: flex;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+
+  @media screen and (min-width: $desktop-min-breakpoint) {
+    overflow-y: visible;
+    height: auto;
+  }
+
+  /* Reset ULs and LIs */
+  &,
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  /* Defaults for all links and toggle buttons */
+  .megaMenu__toggleButton,
+  .megaMenu__link {
+    appearance: none;
+    display: block;
+    border: 0;
+    background: none;
+    color: var(--black);
+    font-size: rem-calc(12);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: rem-calc(8) 0;
+    margin: 0;
+    white-space: nowrap;
+    cursor: pointer;
+
+    @media screen and (min-width: $desktop-min-breakpoint) {
+      color: var(--white);
+    }
+  }
+
+  /* Styles for the top level menu */
+  & > li > .megaMenu__toggleButton,
+  & > li > .megaMenu__link {
+    text-transform: uppercase;
+    padding: rem-calc(17) rem-calc(22);
+  }
+
+  /* Styles for the mega menu dropdown */
+  .megaMenu__container {
+    display: flex;
+    visibility: hidden;
+    justify-content: space-between;
+    width: 100vw;
+    height: 0;
+    overflow: hidden;
+    background-color: var(--megamenu-menu-bg-color, var(--dark-grey));
+    padding: 0;
+
+    .megaMenu__toggleButton,
+    .megaMenu__link {
+      color: var(--white);
+    }
+
+    > li {
+      flex: 1;
+    }
+
+    @media screen and (min-width: $desktop-min-breakpoint) {
+      padding: var(--megamenu-menu-padding, var(--spacing-base));
+      margin-top: var(--megamenu-offset-top, 0px);
+      left: 0;
+      position: fixed;
+      opacity: 0;
+      height: auto;
+      max-height: var(--megamenu-menu-max-height, 80vh);
+      overflow: auto;
+      pointer-events: none;
+      transition: all 0.25s ease-out;
+      transition-property: opacity, visibility;
+    }
+
+    &[aria-hidden='false'] {
+      visibility: visible;
+      height: auto;
+      padding: var(--megamenu-menu-padding, var(--spacing-base));
+
+      @media screen and (min-width: $desktop-min-breakpoint) {
+        opacity: 1;
+        overflow-y: scroll;
+        pointer-events: all;
+      }
+    }
+  }
+
+  /* Styles for items of type 'group' */
+  .megaMenu__group {
+    > h3 {
+      color: var(--success);
+    }
+  }
+
+  /* Styles for items of type 'submenu' */
+  .megaMenu__subMenu {
+    .megaMenu__toggleButton {
+      text-decoration: underline;
+    }
+
+    .megaMenu__link {
+      color: var(--black);
+    }
+
+    > ul {
+      display: block;
+      background-color: var(--light-grey);
+      margin-left: rem-calc(8);
+      padding: rem-calc(8);
+      visibility: hidden;
+      pointer-events: none;
+      overflow-y: hidden;
+      height: 0;
+      opacity: 0;
+      transition: all 0.25s ease-out;
+      transition-property: opacity, visibility;
+
+      &[aria-hidden='false'] {
+        visibility: visible;
+        pointer-events: all;
+        opacity: 1;
+        height: auto;
+      }
+    }
+  }
+
+  /* Styles for megamenu components. Each component has a data attribute set by the item's title so individual styling can be applied */
+  .megaMenu__component {
+    &[data-component-name='megamenu-component-1'] {
+      max-width: rem-calc(200);
+    }
+  }
+}

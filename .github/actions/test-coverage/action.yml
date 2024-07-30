@@ -1,0 +1,12 @@
+name: coverage
+author: on-associates
+description: 'Upload test coverage report as an artifact'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/upload-artifact@v2 # upload test results
+      if: success() || failure() # run this step even if previous step failed
+      with:
+        name: unit-tests-results
+        path: tests/.coverage/junit.xml

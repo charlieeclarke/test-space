@@ -1,0 +1,21 @@
+/* EXAMPLE USAGE
+
+    .element {
+      @include z-index(modal);
+    }
+*/
+
+$z-index: (
+  spinner: 10000,
+  overlay: 9999,
+  header: 1000,
+  menu: 2,
+);
+
+@function z-index($key) {
+  @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+  z-index: z-index($key);
+}

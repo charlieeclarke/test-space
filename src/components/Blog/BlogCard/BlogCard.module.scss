@@ -1,0 +1,58 @@
+.postCard {
+  background-color: var(--card-background);
+  padding: var(--postcard-padding);
+  border-radius: var(--card-border-radius);
+
+  width: 100%;
+  max-width: var(--page-width);
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--card-color);
+  }
+}
+
+.postCardImageWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.postCardImage {
+  img {
+    border-radius: var(--card-border-radius);
+  }
+}
+
+.postCardLink {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.postCardTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.postCardDescription {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: var(--spacing-m);
+}
+
+.postCardButton {
+  color: var(--card-color);
+  text-decoration: none;
+  &:hover {
+    color: var(--card-color);
+  }
+}

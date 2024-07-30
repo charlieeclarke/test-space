@@ -1,0 +1,23 @@
+query ContentNodes($starts_with: String, $page: Int, $per_page: Int) {
+  ContentNodes(starts_with: $starts_with, page: $page, per_page: $per_page) {
+    total
+    items {
+      slug
+      full_slug
+      created_at
+      translated_slugs {
+        lang
+        path
+        name
+      }
+      alternates {
+        slug
+        fullSlug
+      }
+      path
+      published_at
+      tag_list
+      first_published_at
+    }
+  }
+}

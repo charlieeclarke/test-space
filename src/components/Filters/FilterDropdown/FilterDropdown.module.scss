@@ -1,0 +1,32 @@
+.customSelectArrow {
+  // dropdown arrow
+  appearance: none;
+  background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgaWQ9Imljb25zIj4KPHBhdGggaWQ9IlZlY3RvciIgZD0iTTE5IDguOTk5OTdMMTIgMTZMNSA4Ljk5OTk3IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0ic3F1YXJlIi8+CjwvZz4KPC9zdmc+Cg==')
+    no-repeat calc(100% - var(--spacing-base)) 50%;
+  background-size: 24px;
+}
+
+.select {
+  // Custom arrow
+  @extend .customSelectArrow;
+
+  // Layout
+  align-items: center;
+  display: flex;
+  gap: var(--spacing-base);
+  flex-direction: row;
+  justify-content: space-between;
+
+  // Styling
+  background-color: transparent;
+  border: 1px solid var(--grey);
+  border-radius: 4px;
+
+  // Spacing and size
+  padding: var(--spacing-s) var(--spacing-base);
+  width: 100%;
+
+  @include for-desktop-up {
+    width: 216px;
+  }
+}

@@ -1,0 +1,129 @@
+.library {
+  padding: 42px 0 0;
+
+  --logo-color: var(--black);
+}
+
+.contents {
+  display: inline-block;
+  border: 1px solid var(--light-grey);
+  list-style-position: inside;
+  padding: 0.75rem 0;
+  margin: 0 0 80px;
+  min-width: 250px;
+
+  li {
+    padding: 0.5rem 1.25rem;
+    font-family: sans-serif;
+    font-weight: bold;
+
+    a {
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 1px solid #555;
+    }
+  }
+}
+
+.libraryHeader {
+  padding: 100px 0;
+
+  h1 {
+    margin: 30px 0 20px;
+    font-family: sans-serif;
+  }
+
+  p {
+    margin: 0 0 20px;
+    max-width: 600px;
+    font-family: sans-serif;
+  }
+
+  &Usage {
+    padding: 0;
+
+    font-family: sans-serif;
+  }
+}
+
+.libraryBlock {
+  margin: 0;
+
+  &__header {
+    --heading-color: var(--black);
+    --link-color: var(--black);
+
+    padding: 45px 0;
+    background-color: #daf7a6;
+    color: var(--black);
+
+    border-top: 1px solid #b1ca85;
+    box-shadow: 0 -1px 10px 2px #b1ca85;
+
+    h4 {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: bold;
+      font-size: rem-calc(18);
+    }
+
+    p,
+    h4 {
+      font-family: sans-serif;
+    }
+
+    ol,
+    ul {
+      margin: 10px 0 0;
+      padding: 0 0 0 1rem;
+      font-family: sans-serif;
+      font-size: rem-calc(14);
+
+      li {
+        font-family: sans-serif;
+      }
+    }
+
+    a {
+      display: block;
+      margin: 30px 0 0;
+      font-weight: bold;
+
+      text-decoration: none;
+      font-size: 0.8rem;
+      border: 1px solid #b1ca85;
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+
+      @media screen and (min-width: $desktop-min-breakpoint) {
+        margin: 0 0 0 auto;
+        float: right;
+      }
+    }
+  }
+
+  &__board {
+    background-image: linear-gradient(
+      135deg,
+      #ebebeb 25%,
+      #e0e0e0 25%,
+      #e0e0e0 50%,
+      #ebebeb 50%,
+      #ebebeb 75%,
+      #e0e0e0 75%,
+      #e0e0e0 100%
+    );
+    background-size: 28.28px 28.28px;
+
+    padding: 70px 0 160px;
+
+    > * {
+      background-color: var(--white);
+    }
+  }
+}
+
+.libraryUsage {
+  margin: 50px 0;
+}

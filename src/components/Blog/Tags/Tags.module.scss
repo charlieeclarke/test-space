@@ -1,0 +1,21 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--spacing-m);
+  list-style: none;
+  padding: 0;
+}
+
+.tag {
+  padding: var(--spacing-xs) var(--spacing-m);
+  margin-right: var(--spacing-xs);
+  border-radius: 5px;
+  background-color: var(--light-blue);
+  text-decoration: none;
+  color: var(--white);
+  font-size: rem-calc(14);
+  &:hover {
+    text-decoration: none;
+    color: var(--white);
+  }
+}

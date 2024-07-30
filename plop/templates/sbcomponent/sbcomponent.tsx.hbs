@@ -1,0 +1,11 @@
+import { SbBlokData, storyblokEditable } from '@storyblok/react';
+
+import type { Sb{{componentName}}Component } from './types';
+
+import { {{componentName}} } from '@components/{{componentName}}';
+
+export const Sb{{componentName}}: Sb{{componentName}}Component = ({ blok }) => {
+  return <{{componentName}} {...storyblokEditable(blok as SbBlokData)} />;
+};
+
+export default Sb{{componentName}};

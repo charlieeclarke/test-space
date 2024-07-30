@@ -1,0 +1,31 @@
+query LegalItem($slug: ID!) {
+  LegalItem(id: $slug) {
+    slug
+    name
+    first_published_at
+    full_slug
+    uuid
+    id
+    lang
+    published_at
+    content {
+      _uid
+      _editable
+      component
+      body
+      globalFooter {
+        content
+      }
+      globalHeader {
+        content
+      }
+    }
+    alternates {
+      fullSlug
+      id
+      name
+      published
+      slug
+    }
+  }
+}

@@ -1,0 +1,18 @@
+[build]
+command = "yarn build:prod"
+publish = ".next"
+
+[dev]
+functions = "functions"
+
+[build.environment]
+YARN_FLAGS = "--network-timeout 1000000"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+[[plugins]]
+package = "@netlify/plugin-functions-install-core"
+
+[[edge_functions]]
+function = "country-code"
+path = "/country-code"

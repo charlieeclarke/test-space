@@ -1,0 +1,73 @@
+.richtextContent {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--richtext-heading-font-family, inherit);
+    margin: var(--richtext-heading-margin, 0 0 var(--spacing-base));
+  }
+
+  p {
+    font-family: var(--richtext-paragraph-font-family, inherit);
+    font-size: var(--richtext-paragraph-font-size, inherit);
+    margin: var(--richtext-paragraph-margin, 0 0 var(--spacing-base));
+  }
+
+  blockquote {
+    margin: var(--richtext-blockquote-margin, 0 0 var(--spacing-base));
+    padding: var(--richtext-blockquote-padding, 0);
+
+    border-top: var(--richtext-blockquote-border-top, none);
+    border-right: var(--richtext-blockquote-border-right, none);
+    border-bottom: var(--richtext-blockquote-border-bottom, none);
+    border-left: var(--richtext-blockquote-border-left, none);
+
+    p {
+      font-family: var(--richtext-blockquote-font-family, inherit);
+      font-size: var(--richtext-blockquote-font-size, inherit);
+      margin: var(--richtext-blockquote-margin, 0 0 var(--spacing-base));
+    }
+  }
+
+  ul {
+    margin: var(--richtext-unordered-list-margin, 0);
+    padding: var(--richtext-unordered-list-padding, 1.25rem);
+    list-style: var(--richtext-unordered-list-style, inherit);
+
+    li {
+      font-family: var(--richtext-unordered-list-item-font-family, inherit);
+      font-size: var(--richtext-unordered-list-item-font-size, inherit);
+      margin: var(--richtext-unordered-list-item-margin, 0 0 var(--spacing-base));
+    }
+  }
+
+  ol {
+    margin: var(--richtext-ordered-list-margin, 0);
+    padding: var(--richtext-ordered-list-padding, 1.25rem);
+    list-style: var(--richtext-ordered-list-style, inherit);
+
+    li {
+      font-family: var(--richtext-ordered-list-item-font-family, inherit);
+      font-size: var(--richtext-ordered-list-item-font-size, inherit);
+      margin: var(--richtext-ordered-list-item-margin, 0 0 var(--spacing-base));
+    }
+  }
+
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+  }
+
+  figure {
+    background: var(--richtext-image-figure-background, none);
+    padding: var(--richtext-image-figure-padding, 0);
+
+    p {
+      font-family: var(--richtext-image-caption-font-family, inherit);
+      font-size: var(--richtext-image-caption-font-size, inherit);
+      margin: var(--richtext-image-caption-margin, 0 0 var(--spacing-base));
+    }
+  }
+}

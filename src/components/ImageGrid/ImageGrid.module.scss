@@ -1,0 +1,16 @@
+.imageGrid {
+  padding: var(--module-spacing-top) 0 var(--module-spacing-bottom);
+  --row-gap: 24px;
+}
+
+// Add custom styles to each variant as follows
+.variant2 {
+  &.column1 {
+  }
+
+  &.column2 {
+    @include for-desktop-up {
+      margin-top: var(--spacing-2xl);
+    }
+  }
+}

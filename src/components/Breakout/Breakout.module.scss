@@ -1,0 +1,32 @@
+.breakout {
+  --_padding-x: calc(var(--row-padding) + var(--column-gutter));
+  --_gutter: minmax(var(--_padding-x), 1fr);
+  --_page-width-half: min(50% - var(--_padding-x), calc(var(--page-width) / 2 - var(--_padding-x)));
+
+  display: grid;
+  grid-template-columns: var(--_gutter) var(--_page-width-half) var(--_page-width-half) var(--_gutter);
+
+  &--left {
+    > div:first-of-type {
+      grid-column: 1 / 3;
+    }
+  }
+
+  &--right {
+    > div:last-of-type {
+      grid-column: 3 / 5;
+    }
+  }
+
+  &--fullwidthLeft {
+    > div:first-of-type {
+      grid-column: 1 / 4;
+    }
+  }
+
+  &--fullwidthRight {
+    > div:last-of-type {
+      grid-column: 2 / 5;
+    }
+  }
+}

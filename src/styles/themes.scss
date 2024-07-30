@@ -1,0 +1,39 @@
+// Colour Schemes
+.u-primary {
+  --heading-color: var(--primary);
+  --text-color: var(--black);
+  --link-color: var(--primary);
+
+  --grid-background: var(--light-bg);
+}
+
+.u-secondary {
+  --heading-color: var(--secondary);
+  --text-color: var(--white);
+  --link-color: var(--secondary);
+
+  --grid-background: var(--primary);
+
+  --button-primary-background: var(--secondary);
+  --button-primary-color: var(--black);
+  --button-primary-background-hover: var(--secondary);
+  --button-primary-color-hover: var(--black);
+  --button-primary-background-active: var(--secondary);
+  --button-primary-color-active: var(--black);
+  --button-radius: 0;
+}
+
+.u-alternative {
+  --heading-color: var(--primary);
+  --text-color: var(--black);
+  --link-color: var(--primary);
+
+  --grid-background: var(--pastel-aqua);
+
+  --button-primary-background: var(--pastel-coral);
+  --button-primary-color: var(--black);
+  --button-primary-background-hover: var(--pastel-coral);
+  --button-primary-color-hover: var(--black);
+  --button-primary-background-active: var(--pastel-coral);
+  --button-primary-color-active: var(--black);
+}

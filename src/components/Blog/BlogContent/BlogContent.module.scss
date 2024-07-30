@@ -1,0 +1,37 @@
+.postContent {
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+.postContentImageWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.tags {
+  display: flex;
+  margin-top: var(--spacing-m);
+  list-style: none;
+  padding: 0;
+}
+
+.tag {
+  padding: var(--spacing-xs) var(--spacing-m);
+  margin-right: var(--spacing-xs);
+  border-radius: 5px;
+  background-color: var(--light-blue);
+  text-decoration: none;
+  color: var(--white);
+  font-size: rem-calc(14);
+
+  &:hover {
+    text-decoration: none;
+    color: var(--white);
+  }
+}
+
+.publicationDate {
+  margin: var(--spacing-m) 0;
+  font-size: rem-calc(14);
+  color: var(--light-gray);
+}

@@ -1,0 +1,32 @@
+.ImageWithTextContent {
+  padding: var(--module-spacing-top) 0 var(--module-spacing-bottom);
+
+  @media (min-width: $desktop-min-breakpoint) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+
+    width: 100%;
+    max-width: var(--page-width);
+
+    & > div,
+    & > img {
+      flex-basis: 50%;
+      max-width: 50%;
+    }
+
+    & > div:last-of-type {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+  }
+}
+
+.ImageWithTextContentImageLast {
+  @media (min-width: $desktop-min-breakpoint) {
+    & > div:first-of-type {
+      order: 2;
+    }
+  }
+}

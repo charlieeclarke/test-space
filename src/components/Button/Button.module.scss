@@ -1,0 +1,42 @@
+.isprimary {
+  @include button;
+}
+
+.issecondary {
+  @include button('secondary');
+}
+
+.islink {
+  @include button('link');
+  --button-height: 0;
+}
+
+.isblank {
+  @include button('blank');
+}
+
+.isdisabled {
+  @include button('disabled');
+}
+
+.isAlignedleft {
+  margin-left: 0;
+}
+
+.isAlignedcenter {
+  margin: 0 auto;
+}
+
+.isAlignedright {
+  margin-right: 0;
+  margin-left: auto;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-icon-gap);
+  height: var(--button-content-height, 100%);
+  text-transform: uppercase;
+}

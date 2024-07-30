@@ -1,0 +1,18 @@
+.cover {
+  --_slide-cover-top: 0px;
+  --_slide-cover-stagger: 0px;
+
+  & > * {
+    position: sticky;
+    top: var(--_slide-cover-top);
+    max-height: 100vh;
+  }
+
+  &:last-child {
+    position: relative;
+  }
+}
+
+.child {
+  top: calc((var(--index) * var(--_slide-cover-stagger)) + var(--_slide-cover-top));
+}

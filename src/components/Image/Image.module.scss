@@ -1,0 +1,12 @@
+.image {
+  img {
+    max-width: 100%;
+  }
+}
+
+.imageFill {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}

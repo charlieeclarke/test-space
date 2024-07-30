@@ -1,0 +1,146 @@
+@use 'sass-variables';
+@use 'sass:meta';
+
+:root {
+  // Mirror SASS variables as CSS variables
+  @each $name, $value in meta.module-variables('sass-variables') {
+    --#{$name}: #{$value};
+  }
+
+  // Default colour vars used for theming
+  --text-color: var(--black);
+  --link-color: var(--primary);
+  --heading-color: var(--black);
+  --grid-background: transparent;
+  --border-color: var(--light-grey);
+
+  // Header
+  --header-height: 70px;
+
+  // Grid
+
+  --scroll-snap-type: both mandatory;
+  --overscroll-behavior-x: contain;
+  --scroll-snap-stop: normal;
+  --scroll-snap-align: center;
+
+  // Adjustable variables
+  --column-gutter: 12px; // Spacing between columns
+  --page-width: var(
+    --design-desktop-breakpoint,
+    1440px
+  ); // Your total, maximum page width. Amend here: src/styles/_sass-variables.scss
+  --row-margin: 0; // Additional spacing between left/right edge of row and browser window
+
+  @media screen and (min-width: $tablet-min-breakpoint) {
+    --row-margin: 40px;
+  }
+
+  // Avoid changing this var
+  --row-padding: calc(var(--row-margin) - var(--column-gutter));
+
+  // Spacing
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-base: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 48px;
+  --spacing-2xl: 64px;
+
+  --module-spacing-top: 40px;
+  --module-spacing-bottom: 40px;
+
+  @media screen and (min-width: $tablet-min-breakpoint) {
+    --module-spacing-top: 64px;
+    --module-spacing-bottom: 64px;
+  }
+
+  // Icons
+  --icon-width: 24px;
+  --icon-height: 24px;
+
+  // Cards
+  --card-background: transparent;
+  --card-padding: 0;
+  --card-border-radius: var(--spacing-xs);
+  --card-color: var(--text-color);
+
+  --card-link-background: var(--light-grey);
+  --card-link-background-hover: var(--dark-grey);
+
+  // Blog cards
+  --postcard-padding: 0px 0 40px 0;
+
+  --hover-brightness: 1.2;
+  --button-icon-gap: var(--spacing-xs);
+  --button-height: 48px;
+
+  --button-primary-background: var(--primary);
+  --button-primary-color: var(--white);
+  --button-primary-background-hover: var(--primary);
+  --button-primary-color-hover: var(--black);
+  --button-primary-background-active: var(--primary);
+  --button-primary-color-active: var(--black);
+  --button-primary-border-width: 1px;
+  --button-primary-border-style: solid;
+  --button-primary-border-width-hover: 1px;
+  --button-primary-border-style-hover: solid;
+  --button-primary-radius: 12px;
+  --button-primary-padding: 12px var(--spacing-m);
+
+  --button-secondary-background: var(--light-grey);
+  --button-secondary-color: var(--black);
+  --button-secondary-background-hover: var(--dark-grey);
+  --button-secondary-color-hover: var(--white);
+  --button-secondary-background-active: var(--light-grey);
+  --button-secondary-color-active: var(--white);
+  --button-secondary-border-width: 1px;
+  --button-secondary-border-style: solid;
+  --button-secondary-border-width-hover: 1px;
+  --button-secondary-border-style-hover: solid;
+  --button-secondary-radius: 12px;
+  --button-secondary-padding: 12px;
+
+  --button-link-color: var(--link-color);
+
+  // Richtext
+  --richtext-heading-font-family: inherit;
+  --richtext-heading-margin: 0 0 var(--spacing-base);
+
+  --richtext-paragraph-font-family: inherit;
+  --richtext-paragraph-font-size: inherit;
+  --richtext-paragraph-margin: 0 0 var(--spacing-base);
+
+  --richtext-blockquote-font-family: inherit;
+  --richtext-blockquote-margin: 0 0 var(--spacing-base);
+  --richtext-blockquote-padding: 0;
+  --richtext-blockquote-font-size: 1.8rem;
+  --richtext-blockquote-border-top: none;
+  --richtext-blockquote-border-right: none;
+  --richtext-blockquote-border-left: none;
+  --richtext-blockquote-border-bottom: none;
+
+  --richtext-image-figure-background: lightgrey;
+  --richtext-image-figure-padding: var(--spacing-m);
+
+  --richtext-image-caption-font-family: inherit;
+  --richtext-image-caption-font-size: inherit;
+  --richtext-image-caption-margin: var(--spacing-base) 0 0;
+
+  --richtext-unordered-list-margin: inherit;
+  --richtext-unordered-list-padding: inherit;
+  --richtext-unordered-list-style: inherit;
+
+  --richtext-unordered-list-item-font-family: inherit;
+  --richtext-unordered-list-item-font-size: inherit;
+  --richtext-unordered-list-item-margin: inherit;
+
+  --richtext-ordered-list-margin: var(--richtext-unordered-list-margin);
+  --richtext-ordered-list-padding: var(--richtext-unordered-list-padding);
+  --richtext-unordered-list-style: var(--richtext-unordered-list-style);
+
+  --richtext-ordered-list-item-font-family: var(--richtext-unordered-list-item-font-family);
+  --richtext-ordered-list-item-font-size: var(--richtext-unordered-list-item-font-size);
+  --richtext-ordered-list-item-margin: var(--richtext-unordered-list-item-margin);
+}

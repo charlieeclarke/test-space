@@ -1,0 +1,42 @@
+.accordionItem {
+  border-bottom-width: var(--accordion-item-border-bottom-width);
+  border-bottom-style: var(--accordion-item-border-bottom-style);
+  border-bottom-color: var(--accordion-item-border-bottom-color);
+
+  &:not(:last-of-type) {
+    margin-bottom: var(--accordion-item-spacing);
+  }
+}
+
+.accordionItemPanel {
+  padding: var(--accordion-panel-padding);
+}
+
+.accordionItemButton {
+  background: var(--accordion-trigger-bg);
+  padding: var(--accordion-trigger-padding);
+  color: var(--accordion-trigger-color);
+
+  font-size: var(--accordion-trigger-font-size);
+  font-family: var(--accordion-trigger-font-family);
+  font-weight: var(--accordion-trigger-font-weight);
+
+  border-bottom-color: var(--accordion-trigger-border-bottom-color);
+  border-top-color: var(--accordion-trigger-border-top-color);
+  border-left-color: var(--accordion-trigger-border-left-color);
+  border-right-color: var(--accordion-trigger-border-right-color);
+
+  border-bottom-style: var(--accordion-trigger-border-bottom-style);
+  border-top-style: var(--accordion-trigger-border-top-style);
+  border-left-style: var(--accordion-trigger-border-left-style);
+  border-right-style: var(--accordion-trigger-border-right-style);
+
+  border-bottom-width: 0;
+  border-top-width: var(--accordion-trigger-border-top-width);
+  border-left-width: var(--accordion-trigger-border-left-width);
+  border-right-width: var(--accordion-trigger-border-right-width);
+
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}

@@ -1,0 +1,20 @@
+.languageSwitcher {
+  display: flex;
+  justify-content: flex-end;
+
+  select {
+    width: 100%;
+
+    @include for-desktop-up {
+      width: auto;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__dropdown {
+    // styles
+  }
+}

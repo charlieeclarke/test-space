@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": ".spec.tsbuildinfo",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "types": ["tests/types/jest.d.ts", "jest", "jest-axe", "@testing-library/jest-dom"]
+  },
+  "include": ["tests/types", "jest.config.ts", "jest.setup.ts", "src/**/*.spec.tsx", "src/**/*.spec.ts", "tests/utils"],
+  "exclude": []
+}

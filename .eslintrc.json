@@ -1,0 +1,106 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "cypress/globals": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:react/recommended",
+    "plugin:react-svg/recommended",
+    "plugin:prettier/recommended",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:cypress/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "cypress", "@typescript-eslint"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off", // temporary
+    "@typescript-eslint/no-unsafe-call": "off", // temporary
+    "@typescript-eslint/no-unsafe-member-access": "off", // temporary
+    "@typescript-eslint/no-unsafe-return": "off", // temporary
+    "@typescript-eslint/no-unsafe-argument": 1, // temporary
+    "@typescript-eslint/no-unsafe-assignment": 0, // temporary
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/no-empty-interface": 1,
+    "@typescript-eslint/require-await": 1,
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "react/prop-types": "off",
+    "react/jsx-no-target-blank": "off",
+    "import/no-unresolved": "off",
+    "react/react-in-jsx-scope": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-console": "error",
+    "no-eval": "error",
+    "linebreak-style": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ],
+    "object-curly-newline": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "./"]
+      }
+    }
+  },
+  "root": true,
+  "overrides": [
+    {
+      "files": [
+        "jest.config.ts",
+        "jest.setup.ts",
+        "tests/types/jest.d.ts",
+        "tests/utils/*.ts",
+        "**/*.spec.ts",
+        "**/*.spec.tsx"
+      ],
+      "env": {
+        "node": true,
+        "jest": true
+      },
+      "extends": ["plugin:jest/recommended", "plugin:jest/style"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": 12,
+        "project": "./tsconfig.spec.json",
+        "sourceType": "module"
+      },
+      "plugins": ["jest"],
+      "rules": {
+        "jest/prefer-expect-assertions": "off",
+        "react/react-in-jsx-scope": "off"
+      }
+    }
+  ]
+}

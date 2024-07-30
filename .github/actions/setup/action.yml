@@ -1,0 +1,74 @@
+name: setup
+author: on-associates
+description: 'This action setups cache and build NextJS project.'
+
+inputs:
+  build-command:
+    description: 'The build command to run'
+    required: false
+    default: '-'
+  node-env:
+    description: 'The Node environment'
+    required: false
+    default: 'development'
+  storyblok-preview-token:
+    description: 'The Storyblok preview token'
+    required: false
+  storyblok-space-id:
+    description: 'The Storyblok space id'
+    required: false
+
+outputs:
+  cache-hit:
+    description: 'Whether the cache was hit'
+    value: ${{ steps.nextjs-cache.outputs.cache-hit }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🔎 Get NextJS cache dir
+      id: nextjs-cache-dir
+      shell: bash
+      run: echo "::set-output name=cache_dir::${{ github.workspace }}/.next/cache"
+
+    - name: 🏷️ Hash lockfile
+      id: lockfile
+      shell: bash
+      run: |
+        echo "::set-output name=hashed::${{ hashFiles( '${{ yarn.lock }}' ) }}"
+
+    - name: ♻️ Restore NextJS build from cache if available
+      id: nextjs-cache
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.npm
+          ${{ steps.nextjs-cache-dir.outputs.cache_dir }}
+        # Generate a new cache whenever packages or source files change.
+        key: |
+          ${{ runner.os }}-nextjs-${{ steps.lockfile.outputs.hashed }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+        # If source files changed but packages didn't, rebuild from a prior cache.
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ steps.lockfile.outputs.hashed }}-
+
+    - name: 📦 Install Dependencies
+      if: ${{ success() || steps.nextjs-cache.outputs.cache-hit != 'true'  }}
+      shell: bash
+      run: yarn install --frozen-lockfile
+
+    - name: 🏗️ Build NextJS app
+      if: inputs.build-command != '-'
+      shell: bash
+      env:
+        NODE_ENV: ${{ inputs.node-env }}
+        NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN: ${{ inputs.storyblok-preview-token }}
+        STORYBLOK_SPACE_ID: ${{ inputs.storyblok-space-id }}
+      run: ${{ inputs.build-command }}
+
+    - name: 🕋 Upload build
+      uses: actions/upload-artifact@v3
+      if: ${{ success() }}
+      with:
+        retention-days: 3
+        name: build-${{ github.run_id }}
+        path: .next

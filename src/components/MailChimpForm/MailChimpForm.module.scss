@@ -1,0 +1,47 @@
+.mailchimpForm {
+  form {
+    display: flex;
+    flex-direction: var(--mailchimp-form-direction, column);
+    gap: var(--mailchimp-form-spacing, 1rem);
+
+    .form-subscribe-status {
+      color: var(--mailchimp-form-success-color, green);
+      font-size: var(--mailchimp-form-error-size, 0.8rem);
+
+      &[data-subscribe-status='false'] {
+        color: var(--mailchimp-form-error-color, red);
+      }
+    }
+
+    .form__field {
+      label {
+        display: flex;
+        flex-direction: row;
+        gap: var(--mailchimp-form-spacing, 1rem);
+        align-items: center;
+        margin-bottom: 0;
+        color: var(--mailchimp-form-label-color, black);
+        font-size: var(--mailchimp-form-label-size, 1rem);
+      }
+
+      .form-input__error {
+        font-size: var(--mailchimp-form-error-size, 0.8rem);
+        color: var(--mailchimp-form-error-color, red);
+      }
+
+      &[data-input-error] {
+        input {
+          border-color: var(--mailchimp-form-error-color, red);
+        }
+
+        label {
+          color: var(--mailchimp-form-error-color, red);
+        }
+      }
+    }
+
+    button[type='submit'] {
+      width: min-content;
+    }
+  }
+}

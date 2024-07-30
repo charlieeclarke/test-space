@@ -1,0 +1,71 @@
+@mixin button($variant: 'primary') {
+  display: inline-block;
+  text-decoration: none;
+
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease-in-out;
+  min-height: var(--button-height);
+
+  background: var(--button-#{$variant}-background);
+  color: var(--button-#{$variant}-color);
+
+  border-width: var(--button-#{$variant}-border-width, 0);
+  border-style: var(--button-#{$variant}-border-style, none);
+  border-color: var(--button-#{$variant}-color, transparent);
+
+  font-size: var(--button-#{$variant}-font-size, 1rem);
+  line-height: var(--button-#{$variant}-line-height, 1.5);
+  letter-spacing: var(--button-#{$variant}-letter-spacing, inherit);
+
+  padding: var(--button-#{$variant}-padding, 0);
+  border-radius: var(--button-#{$variant}-radius, 0);
+
+  --icon-fill: var(--button-#{$variant}-color);
+  --icon-stroke: var(--button-#{$variant}-color);
+  --text-color: var(--button-#{$variant}-color);
+  &:hover {
+    background: var(--button-#{$variant}-background-hover);
+    color: var(--button-#{$variant}-color);
+
+    border-width: var(--button-#{$variant}-border-width-hover, 0);
+    border-style: var(--button-#{$variant}-border-style-hover, none);
+    border-color: var(--button-#{$variant}-background-hover, transparent);
+
+    &:not(.isMuted) {
+      color: var(--button-#{$variant}-color-hover);
+
+      --icon-fill: var(--button-#{$variant}-color-hover);
+      --icon-stroke: var(--button-#{$variant}-color-hover);
+      --text-color: var(--button-#{$variant}-color-hover);
+    }
+  }
+
+  &:active {
+    &:not(.isMuted) {
+      background: var(--button-#{$variant}-background-active);
+      color: var(--button-#{$variant}-color-active);
+      --icon-fill: var(--button-#{$variant}-color-active);
+      --icon-stroke: var(--button-#{$variant}-color-active);
+      --text-color: var(--button-#{$variant}-color-active);
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  &.ghost {
+    border: 2px solid var(--button-#{$variant}-background);
+    background: transparent;
+    color: var(--button-#{$variant}-background);
+
+    &:hover,
+    &:active {
+      background: var(--button-#{$variant}-background);
+      color: var(--button-#{$variant}-color);
+    }
+  }
+}

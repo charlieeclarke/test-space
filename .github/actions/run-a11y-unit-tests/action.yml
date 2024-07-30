@@ -1,0 +1,10 @@
+name: 'a11y-unit-tests'
+description: 'Run accessibility unit tests for the application'
+author: 'ON'
+
+runs:
+  using: composite
+  steps:
+    - uses: ./.github/actions/run-unit-tests
+      with:
+        group: a11y
