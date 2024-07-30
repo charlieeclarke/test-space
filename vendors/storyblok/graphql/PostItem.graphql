@@ -4,13 +4,6 @@ query PostItem($slug: ID!) {
       _editable
       component
       content
-      SEO
-      globalFooter {
-        content
-      }
-      globalHeader {
-        content
-      }
     }
     slug
     name

@@ -12,13 +12,13 @@ import { PageLayout } from '@layouts/PageLayout';
 import { Spinner } from '@components/Spinner';
 import { getStoryblokPage } from '~storyblok/graphql';
 import { NextPageWithLayout } from './_app';
+import { error } from 'console';
 
 const StoryblokHomePage: NextPageWithLayout<Awaited<ReturnType<GetStoryStaticProps>>> = ({
   story: initialStory,
   resolveRelations,
 }) => {
   const story = useDynamicStoryblokState(initialStory, { resolveRelations });
-
   if (!story?.content) {
     return <Spinner />;
   }
@@ -36,10 +36,11 @@ export const getStaticProps: GetStaticProps = async ({ preview = false, locale =
     const ONE_HOUR = 60 * 60; // 1 Hour in seconds. ❗️ Always avoid use magic numbers!
 
     return {
-      props: {
-        ...PageItem,
-        ...(await serverSideTranslations(locale, ['common'])),
-      },
+      props:
+        {
+          ...PageItem,
+          ...(await serverSideTranslations(locale, ['common'])),
+        } || {},
       revalidate: ONE_HOUR,
     };
   } catch {

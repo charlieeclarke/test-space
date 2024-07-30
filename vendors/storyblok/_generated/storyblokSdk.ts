@@ -388,7 +388,6 @@ export type PageComponent = {
   component?: Maybe<Scalars['String']['output']>;
   globalFooter?: Maybe<Story>;
   globalHeader?: Maybe<Story>;
-  schemaPageType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
 
@@ -1295,7 +1294,6 @@ export const BlogPageDocument = gql`
     content {
       component
       body
-      schemaPageType
       SEO
       globalFooter {
         content
@@ -1506,7 +1504,6 @@ export const PageItemDocument = gql`
       _editable
       component
       body
-      schemaPageType
       SEO
       globalFooter {
         content
